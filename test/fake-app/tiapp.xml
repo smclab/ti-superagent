@@ -41,7 +41,7 @@
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <mobileweb />
     <modules>
-        <module platform="commonjs" version="0.0.0">ti-request</module>
+        <module platform="commonjs" version="0.0.0">ti-superagent</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>
