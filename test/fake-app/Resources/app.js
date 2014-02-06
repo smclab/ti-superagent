@@ -1,5 +1,5 @@
 
-var request = require('ti-request');
+var request = require('ti-superagent');
 
 request
 .get('http://10.1.23.23:8080')
