@@ -37,7 +37,7 @@ module.exports = function (grunt) {
 
     unzip: {
       "module": {
-        src: 'ti-request-commonjs-<%= pkg.version %>.zip',
+        src: '<%= pkg.name %>-commonjs-<%= pkg.version %>.zip',
         dest: 'test/fake-app'
       }
     }
