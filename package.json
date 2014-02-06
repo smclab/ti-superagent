@@ -1,0 +1,35 @@
+{
+  "name": "ti-superagent",
+  "guid": "281048cb-9b3e-86f4-a39d-35499d4ab415",
+  "version": "0.1.0",
+  "description": "Titanium.Network.HTTPClient with less suck",
+  "author": {
+    "name": "Pier Paolo Ramon",
+    "email": "pierpaolo.ramon@smc.it",
+    "url": "https://github.com/yuchi"
+  },
+  "license": "LGPL-2.1",
+  "engines": {
+    "titaniumsdk": ">= 3.2.0.GA"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "keyboard": [
+    "titanium",
+    "ajax",
+    "superagent",
+    "titaniumifier"
+  ],
+  "dependencies": {
+    "superagent": "^0.16.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-titaniumifier": "~0.2.2",
+    "grunt-zip": "~0.12.0",
+    "grunt-titanium": "~0.1.0",
+    "grunt-contrib-clean": "~0.5.0"
+  }
+}
