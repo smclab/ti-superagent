@@ -34,6 +34,4 @@ request.Request.prototype.redirects= function (redirects) {
 	}
 };
 
-console.log(Object.keys(request));
-
 module.exports = request;
