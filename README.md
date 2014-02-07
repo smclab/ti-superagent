@@ -26,7 +26,6 @@ request.get('http://my-awesome-server.it/api.json')
   	console.log('I’ll be able to call ' + method);
   });
 });
-
 ```
 
 Credits
