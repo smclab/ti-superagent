@@ -24,7 +24,7 @@ request.get('http://my-awesome-server.it/api.json')
   console.log('JSON version of APIs:');
   res.body.methods.forEach(function (method) {
   	console.log('I’ll be able to call ' + method);
-  })
+  });
 });
 
 ```
