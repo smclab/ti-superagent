@@ -9,6 +9,10 @@
     "url": "https://github.com/yuchi"
   },
   "license": "LGPL-2.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smclab/ti-superagent.git"
+  },
   "engines": {
     "titaniumsdk": ">= 3.2.0.GA"
   },
