@@ -1,61 +1,52 @@
+var stresstest = require('stresstest');
+var timeouttest = require('timeouttest');
 
-var request = require('ti-superagent');
+var win = Ti.UI.createWindow({});
 
-var config = require('config');
+var list = Ti.UI.createView({
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  layout: 'vertical'
+});
 
-var MAX_ERRORS = 3;
-var CHUNK = 500;
-var MUL = 2;
-var errors = 0;
+win.add(list);
 
-var DONE = {};
-
-function next(i) {
-  var req = request
-  .get(config.HOST)
-  .set({
-  	"X-Count": i
-  })
-//  .timeout(3000)
-  .end(function (err, res) {
-
-    //trace("Call for " + i);
-
-    if (DONE[i]) {
-      throw new Error("Duplicate callback!");
-    }
-    else if (err) {
-      DONE[i] = true;
-      errors += 1;
-      Ti.API.error("uaoo");
-      throw err;
-    }
-    else {
-      DONE[i] = true;
-      Ti.API.info("Concludes correctly for " + i + " and res is " + res.text.length);
-    	next(i * MUL);
-    }
+[
+  {
+    title: 'Execute Stress Test',
+    handle: stresstest
+  },
+  {
+    title: 'Timeout test',
+    handle: timeouttest
+  }
+].forEach(function (action) {
+  var button = Ti.UI.createButton({
+    title: action.title
   });
 
-  req.xhr.timeout = 3e3;
+  var running = false;
 
-  /*timeoutId = setTimeout(function () {
-    errors += 1;
-    aborted = true;
+  button.addEventListener('click', function () {
+    running = true;
+    button.enabled = false;
+    button.disabled = true;
 
-    if (errors <= MAX_ERRORS) {
-      Ti.API.info("I’ll try again for " + i);
-      next(i);
-    }
-    else {
-      Ti.API.error("Gross! Failed for " + i);
-    }
-  }, 1200);*/
+    action.handle(function (err) {
+      running = false;
+      button.enabled = true;
+      button.disabled = false;
 
-}
+      if (err) {
+        throw err;
+      }
+      else {
+        alert('Done');
+      }
+    });
+  });
 
-next(CHUNK);
+  list.add(button);
+});
 
-function trace(msg) {
-  Ti.API.error((new Error(msg)).stack);
-}
+win.open();
