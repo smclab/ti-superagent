@@ -7,11 +7,6 @@
 		global.XMLHttpRequest = function XMLHttpRequest() {
 			var xhr = Ti.Network.createHTTPClient();
 
-			xhr.onerror = function (err) {
-				xhr.error = err;
-				xhr.onreadystatechange();
-			};
-
 			if (typeof xhr.getResponseHeaders !== 'undefined') {
 				xhr.getAllResponseHeaders = getAllResponseHeaders;
 			}
@@ -30,27 +25,72 @@
 
 var request = require('superagent');
 
-var end = request.Request.prototype.end;
+function getXHR() {
+  return new XMLHttpRequest();
+}
 
-request.Request.prototype.end = function () {
-  var req = end.apply(this, arguments);
+request.Request.prototype.end = function (fn) {
+  var self = this;
+  var xhr = this.xhr = getXHR();
+  var query = this._query.join('&');
+  var timeout = this._timeout;
+  var data = this._data;
 
-  req.xhr.onreadystatechange = function () {
-  	if (req.xhr.error) return req.genericError();
-    if (4 != req.xhr.readyState) return;
-    if (0 == req.xhr.status) {
-      if (req.aborted) return req.timeoutError();
-      return req.crossDomainError();
+  // store callback
+  this._callback = fn || noop;
+
+  // state change
+  xhr.onreadystatechange = function(){
+    if (4 != xhr.readyState) return;
+    if (0 == xhr.status) {
+      if (self.aborted) return self.timeoutError();
+      return;
     }
-    req.emit('end');
+    self.emit('end');
   };
 
-  return req;
+  xhr.onerror = function (error) {
+    self.genericError(error);
+  };
+
+  // timeout
+  if (timeout) {
+    xhr.timeout = timeout;
+  }
+
+  // querystring
+  if (query) {
+    query = request.serializeObject(query);
+    this.url += ~this.url.indexOf('?')
+      ? '&' + query
+      : '?' + query;
+  }
+
+  // initiate request
+  xhr.open(this.method, this.url, true);
+
+  // CORS
+  if (this._withCredentials) xhr.withCredentials = true;
+
+  // body
+  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
+    // serialize stuff
+    var serialize = request.serialize[this.getHeader('Content-Type')];
+    if (serialize) data = serialize(data);
+  }
+
+  // set header fields
+  for (var field in this.header) {
+    if (null == this.header[field]) continue;
+    xhr.setRequestHeader(field, this.header[field]);
+  }
+
+  // send stuff
+  xhr.send(data);
+  return this;
 };
 
-request.Request.prototype.genericError = function() {
-	var error = this.xhr.error;
-
+request.Request.prototype.genericError = function(error) {
 	var err = new Error(error.error || 'Unknown error');
 
 	for (var k in error) {
@@ -58,11 +98,17 @@ request.Request.prototype.genericError = function() {
 		err[k] = error[k];
 	}
 
+  if (/timed?\s*out/i.test(err + '')) {
+    err.timeout = this._timeout;
+  }
+
 	this.callback(err);
 };
 
-request.Request.prototype.crossDomainError = function() {
-	// Does not make sense in Titanium
+request.Request.prototype.timeout = function (timeout) {
+  this._timeout = timeout;
+  if (this.xhr) throw new Error("Cannot set the timeout once the HTTPClient has been created");
+  return this;
 };
 
 request.Request.prototype.redirects = function (redirects) {
