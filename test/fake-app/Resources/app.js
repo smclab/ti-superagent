@@ -23,16 +23,16 @@ win.add(bar);
 
 var ACTIONS = [
   {
-    title: 'Stress Test',
-    handle: require('tests/stress')
-  },
-  {
     title: 'Timeout Test',
     handle: require('tests/timeout')
   },
   {
     title: 'Failure Test',
     handle: require('tests/failure')
+  },
+  {
+    title: 'Stress Test',
+    handle: require('tests/stress')
   },
   {
     all: true,
@@ -104,7 +104,7 @@ function launchAll(callback) {
 }
 
 function launch(i, callback) {
-  bar.value = (1 / ACTIONS.length) * i;
+  bar.value = (1 / (ACTIONS.length - 1)) * i;
   var action = ACTIONS[i];
   if (action && !action.all) action.handle(function (err) {
     if (action.running) callback(new Error("Already running"));
