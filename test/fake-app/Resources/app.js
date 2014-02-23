@@ -1,5 +1,5 @@
-var stresstest = require('stresstest');
-var timeouttest = require('timeouttest');
+
+var config = require('config');
 
 var win = Ti.UI.createWindow({});
 
@@ -11,42 +11,96 @@ var list = Ti.UI.createScrollView({
 
 win.add(list);
 
-[
+var ACTIONS = [
   {
     title: 'Execute Stress Test',
-    handle: stresstest
+    handle: require('stresstest')
   },
   {
     title: 'Timeout test',
-    handle: timeouttest
+    handle: require('timeouttest')
+  },
+  {
+    all: true,
+    title: '» All «',
+    handle: launchAll
   }
-].forEach(function (action) {
-  var button = Ti.UI.createButton({
+];
+
+var BUTTONS = ACTIONS.map(function (action) {
+
+  action.button = Ti.UI.createButton({
     title: action.title
   });
 
-  var running = false;
+  action.running = false;
 
-  button.addEventListener('click', function () {
-    running = true;
-    button.enabled = false;
-    button.disabled = true;
+  action.button.addEventListener('click', function () {
+    if (action.button.disabled) {
+      return;
+    }
 
+    var buttons;
+
+    if (action.all) {
+      buttons = BUTTONS;
+    }
+    else {
+      buttons = [ action.button ];
+    }
+
+    action.running = true;
+    buttons.forEach(disableButton);
     action.handle(function (err) {
-      running = false;
-      button.enabled = true;
-      button.disabled = false;
-
-      if (err) {
-        throw err;
-      }
-      else {
-        alert('Done');
-      }
+      action.running = false;
+      buttons.forEach(enableButton);
+      informUser(action.title, err);
     });
   });
 
-  list.add(button);
+  list.add(action.button);
+
+  return action.button;
 });
+
+if (config.AUTO_LAUNCH) {
+  launchAll(function (err) {
+    informUser("Auto launch", err);
+  });
+}
+
+function informUser(message, err) {
+  if (err) {
+    alert(message + ": NOT OK\n" + err);
+    throw err;
+  }
+  else {
+    alert(message + ": Done");
+  }
+}
+
+function launchAll(callback) {
+  launch(0, callback);
+}
+
+function launch(i, callback) {
+  var action = ACTIONS[i];
+  if (action && !action.all) action.handle(function (err) {
+    if (action.running) callback(new Error("Already running"));
+    else if (err) callback(err);
+    else launch(i + 1, callback);
+  });
+  else callback();
+}
+
+function enableButton(button) {
+  button.enabled = true;
+  button.disabled = false;
+}
+
+function disableButton(button) {
+  button.enabled = false;
+  button.disabled = true;
+}
 
 win.open();
