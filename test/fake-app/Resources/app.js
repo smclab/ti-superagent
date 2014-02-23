@@ -18,6 +18,8 @@ var bar = Ti.UI.createProgressBar({
   value: 0
 });
 
+bar.hide();
+
 win.add(list);
 win.add(bar);
 
