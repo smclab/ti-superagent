@@ -21,6 +21,10 @@ var ACTIONS = [
     handle: require('tests/timeout')
   },
   {
+    title: 'Failure test',
+    handle: require('tests/failure')
+  },
+  {
     all: true,
     title: '» All «',
     handle: launchAll
