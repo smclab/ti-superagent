@@ -9,7 +9,17 @@ var list = Ti.UI.createScrollView({
   layout: 'vertical'
 });
 
+var bar = Ti.UI.createProgressBar({
+  top: 0,
+  right: 0,
+  left: 0,
+  min: 0,
+  max: 1,
+  value: 0
+});
+
 win.add(list);
+win.add(bar);
 
 var ACTIONS = [
   {
@@ -84,15 +94,24 @@ function informUser(message, err) {
 }
 
 function launchAll(callback) {
-  launch(0, callback);
+  bar.show();
+  bar.value = 0;
+  launch(0, function () {
+    bar.value = 1;
+    bar.hide();
+    return callback.apply(this, arguments);
+  });
 }
 
 function launch(i, callback) {
+  bar.value = (1 / ACTIONS.length) * i;
   var action = ACTIONS[i];
   if (action && !action.all) action.handle(function (err) {
     if (action.running) callback(new Error("Already running"));
     else if (err) callback(err);
-    else launch(i + 1, callback);
+    else setTimeout(function () {
+      launch(i + 1, callback)
+    }, 200);
   });
   else callback();
 }
