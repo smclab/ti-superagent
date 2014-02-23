@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>it.smc.fakeapp</id>
-    <name>Fake App for grunt-titaniumifier</name>
+    <name>Fake App for ti-superagent</name>
     <version>1.0</version>
     <publisher>not specified</publisher>
     <url>not specified</url>
