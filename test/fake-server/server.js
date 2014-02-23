@@ -1,4 +1,20 @@
-var port = 8080;
+
+var path = require('path');
+var url = require('url');
+var config;
+
+try {
+  config = require('../fake-app/Resources/config');
+}
+catch (e) {
+  console.error("No configuration found!");
+  console.error("Create one at\n\t%s", path.resolve(__dirname, '../fake-app/Resources/config.js'));
+  process.exit();
+}
+
+var host = url.parse(config.HOST);
+
+var port = +(host.port || 3000);
 
 require('http').createServer(function (req, res) {
 
