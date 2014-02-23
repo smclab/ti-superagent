@@ -3,7 +3,7 @@ var timeouttest = require('timeouttest');
 
 var win = Ti.UI.createWindow({});
 
-var list = Ti.UI.createView({
+var list = Ti.UI.createScrollView({
   width: Ti.UI.SIZE,
   height: Ti.UI.SIZE,
   layout: 'vertical'
