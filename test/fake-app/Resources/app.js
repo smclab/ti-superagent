@@ -14,11 +14,11 @@ win.add(list);
 var ACTIONS = [
   {
     title: 'Execute Stress Test',
-    handle: require('stresstest')
+    handle: require('tests/stress')
   },
   {
     title: 'Timeout test',
-    handle: require('timeouttest')
+    handle: require('tests/timeout')
   },
   {
     all: true,
