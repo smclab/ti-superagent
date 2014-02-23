@@ -12,7 +12,7 @@ function timeouttest(callback) {
   var req = request
   .get(config.HOST + '/timeout')
   .set({
-    "X-Sleep": 1e3
+    "X-Sleep": 5e3
   })
   .timeout(500)
   .end(function (err, res) {
@@ -27,5 +27,5 @@ function timeouttest(callback) {
     req.abort();
 
     callback(new Error("No timeout at all!"));
-  }, 600);
+  }, 3e3);
 }
