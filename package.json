@@ -26,6 +26,12 @@
     "superagent",
     "titaniumifier"
   ],
+  "titanium": {
+    "superagent": "superagent"
+  },
+  "browser": {
+    "superagent": "superagent"
+  },
   "dependencies": {
     "superagent": "^0.16.0"
   },
