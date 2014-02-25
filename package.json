@@ -27,6 +27,7 @@
     "titaniumifier"
   ],
   "titanium": {
+    "./index.js": "./titanium.js",
     "superagent": "superagent"
   },
   "browser": {
