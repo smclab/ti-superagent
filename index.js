@@ -34,6 +34,7 @@ request.Request.prototype.end = function (fn) {
   var xhr = this.xhr = getXHR();
   var query = this._query.join('&');
   var timeout = this._timeout;
+  var redirects = this._redirects;
   var data = this._data;
 
   // store callback
@@ -56,6 +57,10 @@ request.Request.prototype.end = function (fn) {
   // timeout
   if (timeout) {
     xhr.timeout = timeout;
+  }
+
+  if (redirects != null) {
+    this.redirects(redirects);
   }
 
   // querystring
@@ -112,11 +117,12 @@ request.Request.prototype.timeout = function (timeout) {
 };
 
 request.Request.prototype.redirects = function (redirects) {
+  this._redirects = redirects;
 	if (redirects > 0 || redirects === true) {
-		this.xhr.autoRedirect = true;
+		if (this.xhr) this.xhr.autoRedirect = true;
 	}
 	else if (redirects <= 0 || redirects === false) {
-		this.xhr.autoRedirect = false;
+		if (this.xhr) this.xhr.autoRedirect = false;
 	}
 };
 
