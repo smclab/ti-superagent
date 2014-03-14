@@ -9,7 +9,7 @@ This is a [titaniumified][ti] version of [superagent][sa]. This is built using [
 [gti]: https://github.com/smclab/grunt-titaniumifier
 
 ```js
-var request = require('ti-superagent');
+var request = require('superagent');
 
 request.get('http://my-awesome-server.it/api.txt')
 .end(function (res) {
