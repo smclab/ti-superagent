@@ -12,7 +12,11 @@ module.exports = function (grunt) {
     },
 
     titaniumifier: {
-      "module": {}
+      "module": {
+        options: {
+          as: "superagent"
+        }
+      }
     },
 
     titanium: {
@@ -37,7 +41,7 @@ module.exports = function (grunt) {
 
     unzip: {
       "module": {
-        src: '<%= pkg.name %>-commonjs-<%= pkg.version %>.zip',
+        src: 'superagent-commonjs-<%= pkg.version %>.zip',
         dest: 'test/fake-app'
       }
     }

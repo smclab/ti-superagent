@@ -1,5 +1,5 @@
 
-var request = require('ti-superagent');
+var request = require('superagent');
 
 module.exports = failuretest;
 
