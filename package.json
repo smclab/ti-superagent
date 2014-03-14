@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.2",
-    "grunt-titaniumifier": "~0.2.4",
+    "grunt-titaniumifier": "~0.2.5",
     "grunt-zip": "~0.12.0",
     "grunt-titanium": "~0.1.0",
     "grunt-contrib-clean": "~0.5.0"
