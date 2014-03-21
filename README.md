@@ -8,6 +8,45 @@ This is a [titaniumified][ti] version of [superagent][sa]. This is built using [
 [ti]: https://github.com/smclab/titaniumifier
 [gti]: https://github.com/smclab/grunt-titaniumifier
 
+
+### Installation
+
+If you are developing a Titanium SDK application, a packaged *CommonJS* module can be found in the [Releases page][rls].
+
+If you are instead
+- porting with *titaniumifier* a Node.js module to Titanium, and it uses *superagent*;
+- or building CommonJS module using *titaniumifier* and you want to have a reliable, stable, tested HTTPClient;
+
+then you can install this module with
+
+    npm install --save superagent ti-superagent
+
+In your `package.json` add
+
+```js
+{
+  "name": "...",
+  "version": "...",
+  // ...
+  "titanium": {
+    "superagent": "ti-superagent"
+  }
+}
+```
+
+This will tell *titaniumifier* that when your code requires `superagent`, `ti-superagent` is served instead.
+
+You can use [this *package.json* from one of our modules][lrc-pkg] as a reference.
+
+[rls]: https://github.com/smclab/ti-superagent/releases
+[lrc-pkg]: https://github.com/smclab/liferay-connector/tree/master/package.json
+
+
+Usage overview
+--------------
+
+For the full documentation head over the [original repository][sa].
+
 ```js
 var request = require('superagent');
 
