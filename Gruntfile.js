@@ -25,7 +25,8 @@ module.exports = function (grunt) {
           command: 'build',
           logLevel: 'debug',
           projectDir: './test/fake-app',
-          platform: 'ios'
+          platform: 'ios',
+          iosVersion: '7.1'
         }
       },
       "droid": {
