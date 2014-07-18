@@ -139,4 +139,6 @@ function isHost(obj) {
   }
 }
 
+function noop() {}
+
 module.exports = request;
