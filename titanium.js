@@ -1,26 +1,26 @@
 
 ;(function () {
-	if (global === this) {
+  if (global === this) {
 
-		global.window = global;
+    global.window = global;
 
-		global.XMLHttpRequest = function XMLHttpRequest() {
-			var xhr = Ti.Network.createHTTPClient();
+    global.XMLHttpRequest = function XMLHttpRequest() {
+      var xhr = Ti.Network.createHTTPClient();
 
-			if (typeof xhr.getResponseHeaders !== 'undefined') {
-				xhr.getAllResponseHeaders = getAllResponseHeaders;
-			}
+      if (typeof xhr.getResponseHeaders !== 'undefined') {
+        xhr.getAllResponseHeaders = getAllResponseHeaders;
+      }
 
-			function getAllResponseHeaders() {
-				var headers = xhr.getResponseHeaders();
-				return Object.keys(headers).map(function (header) {
-					return header + ':' + headers[header];
-				}).join('\n') + '\n';
-			}
+      function getAllResponseHeaders() {
+        var headers = xhr.getResponseHeaders();
+        return Object.keys(headers).map(function (header) {
+          return header + ':' + headers[header];
+        }).join('\n') + '\n';
+      }
 
-			return xhr;
-		};
-	}
+      return xhr;
+    };
+  }
 })();
 
 var request = require('superagent');
@@ -96,18 +96,18 @@ request.Request.prototype.end = function (fn) {
 };
 
 request.Request.prototype.genericError = function(error) {
-	var err = new Error(error.error || 'Unknown error');
+  var err = new Error(error.error || 'Unknown error');
 
-	for (var k in error) {
-		if (k === 'source') continue;
-		err[k] = error[k];
-	}
+  for (var k in error) {
+    if (k === 'source') continue;
+    err[k] = error[k];
+  }
 
   if (/timed?\s*out/i.test(err + '')) {
     err.timeout = this._timeout;
   }
 
-	this.callback(err);
+  this.callback(err);
 };
 
 request.Request.prototype.timeout = function (timeout) {
@@ -118,12 +118,12 @@ request.Request.prototype.timeout = function (timeout) {
 
 request.Request.prototype.redirects = function (redirects) {
   this._redirects = redirects;
-	if (redirects > 0 || redirects === true) {
-		if (this.xhr) this.xhr.autoRedirect = true;
-	}
-	else if (redirects <= 0 || redirects === false) {
-		if (this.xhr) this.xhr.autoRedirect = false;
-	}
+  if (redirects > 0 || redirects === true) {
+    if (this.xhr) this.xhr.autoRedirect = true;
+  }
+  else if (redirects <= 0 || redirects === false) {
+    if (this.xhr) this.xhr.autoRedirect = false;
+  }
 };
 
 function isHost(obj) {
