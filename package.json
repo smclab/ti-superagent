@@ -14,7 +14,7 @@
     "url": "https://github.com/smclab/ti-superagent.git"
   },
   "engines": {
-    "titaniumsdk": ">= 3.2.0.GA"
+    "titaniumsdk": ">= 3.3.0.GA"
   },
   "main": "index.js",
   "scripts": {
