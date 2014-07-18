@@ -25,6 +25,10 @@ win.add(bar);
 
 var ACTIONS = [
   {
+    title: 'Callback',
+    handle: require('tests/once')
+  },
+  {
     title: 'Timeout Test',
     handle: require('tests/timeout')
   },
