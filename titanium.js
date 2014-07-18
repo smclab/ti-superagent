@@ -47,6 +47,14 @@ request.Request.prototype.end = function (fn) {
       if (self.aborted) return self.timeoutError();
       return;
     }
+    if (self._finished) return;
+    self._finished = true;
+    self.emit('end');
+  };
+
+  xhr.onload = function () {
+    if (self._finished) return;
+    self._finished = true;
     self.emit('end');
   };
 
