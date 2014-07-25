@@ -132,6 +132,7 @@ request.Request.prototype.redirects = function (redirects) {
   else if (redirects <= 0 || redirects === false) {
     if (this.xhr) this.xhr.autoRedirect = false;
   }
+  return this;
 };
 
 function isHost(obj) {
