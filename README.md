@@ -73,7 +73,7 @@ Credits
 Kudos to [@visionmedia][tj] for building [superagent][sa] in the first place.
 
 [tj]: https://github.com/visionmedia
-[sa]: https://http://visionmedia.github.io/superagent
+[sa]: https://visionmedia.github.io/superagent
 
 Humbly made by the spry ladies and gents at SMC.
 
