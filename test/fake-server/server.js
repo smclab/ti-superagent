@@ -51,6 +51,18 @@ require('http').createServer(function (req, res) {
 
   })) return;
 
+  if (route('GET', '/statuses', function () {
+
+    var status = parseInt(req.headers[ 'x-status' ] || 100);
+
+    console.log("» response of %s", status);
+
+    res.writeHead(status, {'Content-Type': 'text/plain'});
+    res.write("xx" + status + "xx");
+    res.end();
+
+  })) return;
+
 }).listen(port);
 
 console.log('Listening on port %s', port);
