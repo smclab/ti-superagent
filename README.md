@@ -1,6 +1,10 @@
 ti-superagent
 =============
 
+[![Dependencies](https://david-dm.org/smclab/ti-superagent/status.svg?style=flat-square)](https://david-dm.org/smclab/ti-superagent#info=dependencies)
+[![Dev Dependencies](https://david-dm.org/smclab/ti-superagent/dev-status.svg?style=flat-square)](https://david-dm.org/smclab/ti-superagent#info=devDependencies)
+[![Available on NPM](https://img.shields.io/npm/v/ti-superagent.svg?style=flat-square)](https://www.npmjs.org/package/ti-superagent)
+
 Titanium.Network.HTTPClient with less suck!
 
 This is a [titaniumified][ti] version of [superagent][sa]. This is built using [`grunt-titaniumifier`][gti].
