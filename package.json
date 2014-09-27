@@ -1,7 +1,7 @@
 {
   "name": "ti-superagent",
   "guid": "281048cb-9b3e-86f4-a39d-35499d4ab415",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Titanium.Network.HTTPClient with less suck!",
   "author": {
     "name": "Pier Paolo Ramon",
