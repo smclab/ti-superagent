@@ -45,6 +45,9 @@ function stresstest(callback) {
         errors += 1;
         callback(err);
       }
+      else if (res.type !== 'text/plain') {
+        callback(new Error("Wrong content type"));
+      }
       else {
         done[i] = true;
         Ti.API.info("Concludes correctly for " + i + " and res is " + res.text.length);
