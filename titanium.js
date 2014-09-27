@@ -106,6 +106,7 @@ request.Request.prototype.end = function (fn) {
   }
 
   // send stuff
+  this.emit('request', this);
   xhr.send(data);
   return this;
 };
