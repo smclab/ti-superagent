@@ -25,7 +25,7 @@ win.add(bar);
 
 var ACTIONS = [
   {
-    title: 'Callback',
+    title: 'Callback Test',
     handle: require('tests/once')
   },
   {
