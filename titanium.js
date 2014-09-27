@@ -59,7 +59,14 @@ request.Request.prototype.end = function (fn) {
   };
 
   xhr.onerror = function (error) {
-    self.genericError(error);
+    if (xhr.status > 0) {
+      if (self._finished) return;
+      self._finished = true;
+      self.emit('end');
+    }
+    else {
+      self.genericError(error);
+    }
   };
 
   // timeout
