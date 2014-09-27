@@ -142,6 +142,19 @@ request.Request.prototype.redirects = function (redirects) {
   return this;
 };
 
+// Not necessary in Titanium SDK 3.4, HTTPClient#getResponseHeader is (as the
+// standard states) case insensitive.
+// See https://jira.appcelerator.org/browse/TIMOB-17585 for reference,
+// and https://github.com/appcelerator/titanium_mobile/pull/6053
+
+var originalSetHeaderProperties = request.Response.prototype.setHeaderProperties;
+request.Response.prototype.setHeaderProperties = function (header) {
+  this.header['content-type'] =
+    this.xhr.getResponseHeader('content-type') ||
+    this.xhr.getResponseHeader('Content-Type');
+  return originalSetHeaderProperties.call(this, header);
+};
+
 function isHost(obj) {
   var str = {}.toString.call(obj);
 
