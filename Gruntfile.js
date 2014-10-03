@@ -54,6 +54,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-titanium');
   grunt.loadNpmTasks('grunt-zip');
 
+  grunt.registerTask('env', 'Builds env.js file from the current process.', function () {
+    grunt.file.write('test/fake-app/Resources/env.js', 'module.exports = ' + JSON.stringify(process.env, null, 2) + ';');
+  });
+
   grunt.registerTask('build', [ 'titaniumifier:module' ]);
   grunt.registerTask('test:ios', [ 'unzip:module', 'titanium:ios' ]);
   grunt.registerTask('test:droid', [ 'unzip:module', 'titanium:droid' ]);
