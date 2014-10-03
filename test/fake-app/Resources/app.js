@@ -97,8 +97,18 @@ var BUTTONS = ACTIONS.map(function (action) {
 
 if (config.AUTO_LAUNCH || env.TRAVIS === 'true') {
   launchAll(function (err) {
-    informUser("Auto launch", err);
+    notifyBuildSystem(err);
   });
+}
+
+function notifyBuildSystem(err) {
+  if (err) {
+    Ti.API.error("NOTOK");
+    Ti.API.error(err);
+  }
+  else {
+    Ti.API.info("ALLOK");
+  }
 }
 
 function informUser(message, err) {
