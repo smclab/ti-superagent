@@ -129,7 +129,7 @@ function launch(i, callback) {
     else if (err) callback(err);
     else setTimeout(function () {
       launch(i + 1, callback)
-    }, 200);
+    }, 0);
   });
   else callback();
 }
