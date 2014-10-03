@@ -1,4 +1,5 @@
 
+var env = require('env');
 var config;
 
 try {
@@ -94,7 +95,7 @@ var BUTTONS = ACTIONS.map(function (action) {
   return action.button;
 });
 
-if (config.AUTO_LAUNCH) {
+if (config.AUTO_LAUNCH || env.TRAVIS === 'true') {
   launchAll(function (err) {
     informUser("Auto launch", err);
   });
