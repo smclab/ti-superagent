@@ -4,7 +4,12 @@ var url = require('url');
 var config;
 
 try {
-  config = require('../fake-app/Resources/config');
+  try {
+    config = require('../fake-app/Resources/config');
+  }
+  catch (e) {
+    config = require('../fake-app/Resources/config.sample');
+  }
 }
 catch (e) {
   console.error("No configuration found!");

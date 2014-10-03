@@ -1,5 +1,12 @@
 
-var config = require('config');
+var config;
+
+try {
+  config = require('config');
+}
+catch (e) {
+  config = require('config.sample');
+}
 
 var win = Ti.UI.createWindow({});
 

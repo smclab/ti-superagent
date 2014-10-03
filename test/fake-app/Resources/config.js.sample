@@ -1,9 +1,0 @@
-
-//
-// Use your current ip address.
-//
-// This is required instead of `localhost` because in the
-// Android emulator the network adapter is NAT instead of bridge.
-//
-
-exports.HOST = 'http://10.11.12.13:8080';
