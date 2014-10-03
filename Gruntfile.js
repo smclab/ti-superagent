@@ -54,6 +54,19 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-titanium');
   grunt.loadNpmTasks('grunt-zip');
 
+  var server;
+
+  grunt.registerTask('server:start', 'Starts the fake server', function () {
+    if (!server) server = require('./test/fake-server/server');
+  });
+
+  grunt.registerTask('server:stop', 'Starts the fake server', function () {
+    var done = this.async();
+
+    if (!server) done();
+    else server.close(done);
+  });
+
   grunt.registerTask('env', 'Builds env.js file from the current process.', function () {
     grunt.file.write('test/fake-app/Resources/env.js', 'module.exports = ' + JSON.stringify(process.env, null, 2) + ';');
   });

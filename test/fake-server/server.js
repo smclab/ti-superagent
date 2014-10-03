@@ -9,14 +9,14 @@ try {
 catch (e) {
   console.error("No configuration found!");
   console.error("Create one at\n\t%s", path.resolve(__dirname, '../fake-app/Resources/config.js'));
-  process.exit();
+  throw new Error("No configuration for fake-server found");
 }
 
 var host = url.parse(config.HOST);
 
 var port = +(host.port || 3000);
 
-require('http').createServer(function (req, res) {
+module.exports = require('http').createServer(function (req, res) {
 
   var route = router.bind(null, req, res);
 
