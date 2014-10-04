@@ -279,7 +279,7 @@ module.exports = function(grunt) {
 var TITANIUM;
 function getTitaniumPath() {
 	// This is just for ti-superagent
-	return path.resolve('.bin', 'titanium');
+	return path.resolve('node_modules', '.bin', 'titanium');
 }
 
 function copyToApp(src, dest, callback) {
