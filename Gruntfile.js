@@ -26,7 +26,9 @@ module.exports = function (grunt) {
           logLevel: 'debug',
           projectDir: './test/fake-app',
           platform: 'ios',
-          iosVersion: '7.1'
+          iosVersion: '7.1',
+          failureTest: /NOTOK/i,
+          successTest: /ALLOK/i
         }
       },
       "droid": {
@@ -49,9 +51,11 @@ module.exports = function (grunt) {
 
   });
 
+  grunt.loadTasks('./tasks');
+
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-titaniumifier');
-  grunt.loadNpmTasks('grunt-titanium');
+  /*grunt.loadNpmTasks('grunt-titanium');*/
   grunt.loadNpmTasks('grunt-zip');
 
   var server;
