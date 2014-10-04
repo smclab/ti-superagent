@@ -6,6 +6,7 @@ script:
 before_install:
   - export TI_OPTS="--no-progress-bars --no-prompt --no-banner --log-level info"
   - npm install --global grunt-cli titanium
+  - npm install
   - mkdir -p $HOME/.titanium
   - echo '{"loggedIn":true}' > $HOME/.titanium/auth_session.json
   - titanium sdk install "$TI_SDK" $TI_OPTS
