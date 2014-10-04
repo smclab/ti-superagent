@@ -26,7 +26,6 @@ module.exports = function (grunt) {
           logLevel: 'debug',
           projectDir: './test/fake-app',
           platform: 'ios',
-          iosVersion: '8.0',
           failureTest: /NOTOK/i,
           successTest: /ALLOK/i
         }
