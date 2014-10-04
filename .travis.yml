@@ -7,5 +7,5 @@ before_install:
   - export TI_OPTS="--no-progress-bars --no-prompt --no-banner --log-level info"
   - npm install --global titanium
   - mkdir -p $HOME/.titanium
-  - cp auth_session.json $HOME/.titanium/auth_session.json
+  - echo '{"loggedIn":true}' > $HOME/.titanium/auth_session.json
   - titanium sdk install "$TI_SDK" $TI_OPTS
