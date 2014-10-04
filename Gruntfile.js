@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       "ios": {
         options: {
           command: 'build',
-          logLevel: 'debug',
+          logLevel: 'trace',
           projectDir: './test/fake-app',
           platform: 'ios',
           failureTest: /NOTOK/i,
