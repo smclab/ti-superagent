@@ -1,0 +1,10 @@
+language: objective-c
+env:
+  - TI_SDK=3.4.0.GA IOS_VERSION=8.0
+script: grunt server:start ios server:stop
+before_install:
+  - export TI_OPTS="--no-progress-bars --no-prompt --no-banner --log-level info"
+  - npm install --global titanium
+  - mkdir -p $HOME/.titanium
+  - cp auth_session.json $HOME/.titanium/auth_session.json
+  - titanium sdk install "$TI_SDK" $TI_OPTS
