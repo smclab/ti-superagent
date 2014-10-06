@@ -8,7 +8,8 @@ module.exports = function (grunt) {
 
     clean: {
       "modules": [ 'test/fake-app/modules' ],
-      "app": [ 'test/fake-app/build' ]
+      "app": [ 'test/fake-app/build' ],
+      "env": [ 'test/fake-app/Resources/env.js' ]
     },
 
     titaniumifier: {
@@ -87,8 +88,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [ 'titaniumifier:module' ]);
-  grunt.registerTask('test:ios', [ 'unzip:module', 'titanium:ios' ]);
-  grunt.registerTask('test:droid', [ 'unzip:module', 'titanium:droid' ]);
+  grunt.registerTask('test:ios', [ 'unzip:module', 'env', 'titanium:ios' ]);
+  grunt.registerTask('test:droid', [ 'unzip:module', 'env', 'titanium:droid' ]);
 
   grunt.registerTask('ios', [ 'clean', 'build', 'test:ios' ]);
   grunt.registerTask('droid', [ 'clean', 'build', 'test:droid' ]);
