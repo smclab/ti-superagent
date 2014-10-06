@@ -96,7 +96,7 @@ var BUTTONS = ACTIONS.map(function (action) {
 });
 
 if (config.AUTO_LAUNCH || env.TRAVIS === 'true') {
-  launchAll(function (err) {
+  launchAll(config, function (err) {
     notifyBuildSystem(err);
   });
 }
