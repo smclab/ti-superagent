@@ -1,11 +1,9 @@
 
 var request = require('superagent');
 
-var config = require('config');
-
 module.exports = timeouttest;
 
-function timeouttest(callback) {
+function timeouttest(config, callback) {
 
   var fired = false;
 

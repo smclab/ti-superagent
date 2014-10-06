@@ -3,7 +3,7 @@ var request = require('superagent');
 
 module.exports = failuretest;
 
-function failuretest(callback) {
+function failuretest(config, callback) {
   request.get("http://i-do-not-exist.com").end(function (err, res) {
     if (!err) callback(new Error("i-do-not-exist.com… exists…"));
     else callback(null);

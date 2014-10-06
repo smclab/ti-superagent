@@ -1,15 +1,13 @@
 
 var request = require('superagent');
 
-var config = require('config');
-
 var MAX_ERRORS = 3;
 var CHUNK = 500;
 var MUL = 2;
 
 module.exports = stresstest;
 
-function stresstest(callback) {
+function stresstest(config, callback) {
 
   Ti.API.warn("Set up for Stress Test");
 

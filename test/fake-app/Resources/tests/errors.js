@@ -1,11 +1,9 @@
 
 var request = require('superagent');
 
-var config = require('config');
-
 module.exports = errorstest;
 
-function errorstest(callback) {
+function errorstest(config, callback) {
 
   var statuses = [ 401, 403, 404, 500 ];
 

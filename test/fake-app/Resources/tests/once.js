@@ -1,11 +1,9 @@
 
 var request = require('superagent');
 
-var config = require('config');
-
 module.exports = oncetest;
 
-function oncetest(callback) {
+function oncetest(config, callback) {
 
   var fired = 0;
 

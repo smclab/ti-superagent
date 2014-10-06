@@ -83,7 +83,7 @@ var BUTTONS = ACTIONS.map(function (action) {
 
     action.running = true;
     buttons.forEach(disableButton);
-    action.handle(function (err) {
+    action.handle(config, function (err) {
       action.running = false;
       buttons.forEach(enableButton);
       informUser(action.title, err);
@@ -121,7 +121,7 @@ function informUser(message, err) {
   }
 }
 
-function launchAll(callback) {
+function launchAll(config, callback) {
   bar.show();
   bar.value = 0;
   launch(0, function () {
@@ -134,7 +134,7 @@ function launchAll(callback) {
 function launch(i, callback) {
   bar.value = (1 / (ACTIONS.length - 1)) * i;
   var action = ACTIONS[i];
-  if (action && !action.all) action.handle(function (err) {
+  if (action && !action.all) action.handle(config, function (err) {
     if (action.running) callback(new Error("Already running"));
     else if (err) callback(err);
     else setTimeout(function () {
