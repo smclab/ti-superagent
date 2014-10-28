@@ -71,16 +71,14 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('server:stop', 'Starts the fake server', function () {
-    var done = this.async();
-
     if (!server) {
       grunt.log.oklns('No server to stop');
-      done();
     }
-    else server.close(function () {
+    else {
+      server.unref();
+      server.close();
       grunt.log.oklns('Server stopped correctly');
-      done();
-    });
+    }
   });
 
   grunt.registerTask('env', 'Builds env.js file from the current process.', function () {
