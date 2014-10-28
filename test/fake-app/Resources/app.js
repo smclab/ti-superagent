@@ -103,8 +103,8 @@ if (config.AUTO_LAUNCH || env.TRAVIS === 'true') {
 
 function notifyBuildSystem(err) {
   if (err) {
-    Ti.API.error("NOTOK");
     Ti.API.error(err);
+    Ti.API.error("NOTOK");
   }
   else {
     Ti.API.info("ALLOK");
