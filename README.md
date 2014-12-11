@@ -3,6 +3,7 @@ ti-superagent
 
 [![Dependencies](https://david-dm.org/smclab/ti-superagent/status.svg?style=flat-square)](https://david-dm.org/smclab/ti-superagent#info=dependencies)
 [![Dev Dependencies](https://david-dm.org/smclab/ti-superagent/dev-status.svg?style=flat-square)](https://david-dm.org/smclab/ti-superagent#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/smclab/ti-superagent.svg?style=flat-square)](https://travis-ci.org/smclab/ti-superagent)
 [![Available on NPM](https://img.shields.io/npm/v/ti-superagent.svg?style=flat-square)](https://www.npmjs.org/package/ti-superagent)
 
 Titanium.Network.HTTPClient with less suck!
