@@ -14,28 +14,26 @@ module.exports = function (grunt) {
 
     titaniumifier: {
       "module": {
-        options: {
-          as: "superagent"
-        }
+        files: { '.' : '.' },
+        options: {}
       }
     },
 
     titanium: {
-      "ios": {
-        options: {
+      options: {
           command: 'build',
           logLevel: 'trace',
           projectDir: './test/fake-app',
+          failure: /NOTOK/i,
+          success: /ALLOK/i
+      },
+      "ios": {
+        options: {
           platform: 'ios',
-          failureTest: /NOTOK/i,
-          successTest: /ALLOK/i
         }
       },
       "droid": {
         options: {
-          command: 'build',
-          logLevel: 'trace',
-          projectDir: './test/fake-app',
           platform: 'android',
           deviceId: grunt.option('device-id')
         }
@@ -51,11 +49,9 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.loadTasks('./tasks');
-
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-titaniumifier');
-  /*grunt.loadNpmTasks('grunt-titanium');*/
+  grunt.loadNpmTasks('grunt-titanium');
   grunt.loadNpmTasks('grunt-zip');
 
   var server;
