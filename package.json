@@ -1,7 +1,10 @@
 {
   "name": "ti-superagent",
-  "guid": "281048cb-9b3e-86f4-a39d-35499d4ab415",
   "version": "0.6.0",
+  "titaniumManifest": {
+    "guid": "281048cb-9b3e-86f4-a39d-35499d4ab415",
+    "name": "superagent"
+  },
   "description": "Titanium.Network.HTTPClient with less suck!",
   "author": {
     "name": "Pier Paolo Ramon",
@@ -27,12 +30,9 @@
     "titaniumifier"
   ],
   "titanium": {
-    "./index.js": "./titanium.js",
-    "superagent": "superagent"
+    "./index.js": "./titanium.js"
   },
-  "browser": {
-    "superagent": "superagent"
-  },
+  "browser": {},
   "dependencies": {
     "superagent": "~0.19.0"
   },
