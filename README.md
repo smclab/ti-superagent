@@ -5,10 +5,11 @@ ti-superagent
 [![Dev Dependencies](https://david-dm.org/smclab/ti-superagent/dev-status.svg?style=flat-square)](https://david-dm.org/smclab/ti-superagent#info=devDependencies)
 [![Build Status](https://img.shields.io/travis/smclab/ti-superagent.svg?style=flat-square)](https://travis-ci.org/smclab/ti-superagent)
 [![Available on NPM](https://img.shields.io/npm/v/ti-superagent.svg?style=flat-square)](https://www.npmjs.org/package/ti-superagent)
+[![Available on gitTio](https://img.shields.io/badge/available_on-gitTio-00B4CC.svg?style=flat-square)](http://gitt.io/component/superagent)
 
 Titanium.Network.HTTPClient with less suck!
 
-This is a [titaniumified][ti] version of [superagent][sa]. This is built using [`grunt-titaniumifier`][gti].
+This is a [titaniumified][ti] version of [superagent][sa], built using [`grunt-titaniumifier`][gti].
 
 [ti]: https://github.com/smclab/titaniumifier
 [gti]: https://github.com/smclab/grunt-titaniumifier
@@ -16,15 +17,19 @@ This is a [titaniumified][ti] version of [superagent][sa]. This is built using [
 
 ### Installation
 
-If you are developing a Titanium SDK application, a packaged *CommonJS* module can be found in the [Releases page][rls].
+With **gitTio** for  **Titanium SDK** you can easily install it with
+
+    $ gittio install superagent
+
+To download the module for [manual install][mi] (e.g. through *Appcelerator Studio*) then head over the [releases page][rp] to download the latest packaged module.
 
 If you are instead
-- porting with *titaniumifier* a Node.js module to Titanium, and it uses *superagent*;
+- porting with [*titaniumifier*][ti] a Node.js module to Titanium, and it uses *superagent*;
 - or building CommonJS module using *titaniumifier* and you want to have a reliable, stable, tested HTTPClient;
 
 then you can install this module with
 
-    npm install --save superagent ti-superagent
+    $ npm install --save superagent ti-superagent
 
 In your `package.json` add
 
@@ -43,7 +48,8 @@ This will tell *titaniumifier* that when your code requires `superagent`, `ti-su
 
 You can use [this *package.json* from one of our modules][lrc-pkg] as a reference.
 
-[rls]: https://github.com/smclab/ti-superagent/releases
+[mi]: http://docs.appcelerator.com/titanium/latest/#!/guide/Using_a_Module
+[rp]: https://github.com/smclab/ti-superagent/releases
 [lrc-pkg]: https://github.com/smclab/liferay-connector/tree/master/package.json
 
 
