@@ -37,8 +37,16 @@ request.Request.prototype.end = function (fn) {
   var redirects = this._redirects;
   var data = this._data;
 
+  if (data._useValidatesSecureCertificate) {
+      xhr.validatesSecureCertificate = this._validatesSecureCertificate;
+      delete data._useValidatesSecureCertificate;
+      delete data._validatesSecureCertificate;
+  }
+
   // store callback
   this._callback = fn || noop;
+
+  xhr.validatesSecureCertificate = this._validatesSecureCertificate;
 
   // state change
   xhr.onreadystatechange = function(){

@@ -4,3 +4,4 @@ test/fake-app/build
 test/fake-app/modules
 test/fake-app/Resources/env.js
 test/fake-app/Resources/config.js
+dist
