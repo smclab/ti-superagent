@@ -37,6 +37,10 @@ request.Request.prototype.end = function (fn) {
   var redirects = this._redirects;
   var data = this._data;
 
+  if (this._useValidatesSecureCertificate) {
+      xhr.validatesSecureCertificate = this._validatesSecureCertificate;
+  }
+
   // store callback
   this._callback = fn || noop;
 
@@ -140,6 +144,12 @@ request.Request.prototype.redirects = function (redirects) {
   else if (redirects <= 0 || redirects === false) {
     if (this.xhr) this.xhr.autoRedirect = false;
   }
+  return this;
+};
+
+request.Request.prototype.setValidatesSecureCertificate = function (useCertificates) {
+  this._useValidatesSecureCertificate = true;
+  this._validatesSecureCertificate = useCertificates;
   return this;
 };
 
