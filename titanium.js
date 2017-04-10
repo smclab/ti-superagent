@@ -36,10 +36,7 @@ request.Request.prototype.end = function (fn) {
   var timeout = this._timeout;
   var redirects = this._redirects;
   var data = this._data;
-
-  if (this._useValidatesSecureCertificate) {
-      xhr.validatesSecureCertificate = this._validatesSecureCertificate;
-  }
+  var validatesSecureCertificate = this._validatesSecureCertificate;
 
   // store callback
   this._callback = fn || noop;
@@ -80,6 +77,10 @@ request.Request.prototype.end = function (fn) {
 
   if (redirects != null) {
     this.redirects(redirects);
+  }
+
+  if (validatesSecureCertificate != null) {
+    xhr.validatesSecureCertificate = this._validatesSecureCertificate
   }
 
   // querystring
@@ -147,9 +148,8 @@ request.Request.prototype.redirects = function (redirects) {
   return this;
 };
 
-request.Request.prototype.setValidatesSecureCertificate = function (useCertificates) {
-  this._useValidatesSecureCertificate = true;
-  this._validatesSecureCertificate = useCertificates;
+request.Request.prototype.validatesSecureCertificate = function (validates) {
+  this._validatesSecureCertificate = validates;
   return this;
 };
 
