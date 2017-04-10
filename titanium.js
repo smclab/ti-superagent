@@ -36,6 +36,7 @@ request.Request.prototype.end = function (fn) {
   var timeout = this._timeout;
   var redirects = this._redirects;
   var data = this._data;
+  var validatesSecureCertificate = this._validatesSecureCertificate;
 
   // store callback
   this._callback = fn || noop;
@@ -76,6 +77,10 @@ request.Request.prototype.end = function (fn) {
 
   if (redirects != null) {
     this.redirects(redirects);
+  }
+
+  if (validatesSecureCertificate != null) {
+    xhr.validatesSecureCertificate = this._validatesSecureCertificate
   }
 
   // querystring
@@ -140,6 +145,11 @@ request.Request.prototype.redirects = function (redirects) {
   else if (redirects <= 0 || redirects === false) {
     if (this.xhr) this.xhr.autoRedirect = false;
   }
+  return this;
+};
+
+request.Request.prototype.validatesSecureCertificate = function (validates) {
+  this._validatesSecureCertificate = validates;
   return this;
 };
 
