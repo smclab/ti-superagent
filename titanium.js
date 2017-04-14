@@ -38,8 +38,16 @@ request.Request.prototype.end = function (fn) {
   var data = this._data;
   var validatesSecureCertificate = this._validatesSecureCertificate;
 
+  if (data._useValidatesSecureCertificate) {
+      xhr.validatesSecureCertificate = this._validatesSecureCertificate;
+      delete data._useValidatesSecureCertificate;
+      delete data._validatesSecureCertificate;
+  }
+
   // store callback
   this._callback = fn || noop;
+
+  xhr.validatesSecureCertificate = this._validatesSecureCertificate;
 
   // state change
   xhr.onreadystatechange = function(){
